@@ -1,0 +1,60 @@
+<section id="player-container">
+  <section id="player-controls">
+    <section id="play-info">
+      <section id="album-art">
+        <img src="assets/images/music-placeholder.png" alt="">
+      </section>
+      <section id="song-info">
+        <h2 class="attr title">Lurkin</h2>
+        <h4 class="attr artist">Mr Leo, Paddy Amsy</h4>
+      </section>
+    </section>
+    <section id="control-pan">
+      <section id="buttons">
+        <section id="control-buttons">
+          <button>
+            <ion-icon name="play-back-circle-outline"></ion-icon>
+          </button>
+          <button *ngIf="!playerState.playing" (click)="play()">
+            <ion-icon name="play-circle-outline"></ion-icon>
+          </button>
+          <button *ngIf="playerState.playing" (click)="pause()">
+            <ion-icon name="pause-circle-outline"></ion-icon>
+          </button>
+          <button>
+            <ion-icon name="play-forward-circle-outline"></ion-icon>
+          </button>
+        </section>
+        <section id="c_controls">
+          <button>
+            <ion-icon name="repeat-outline"></ion-icon>
+          </button>
+          <button>
+            <ion-icon name="list-circle-outline"></ion-icon>
+          </button>
+          <div id="volume">
+            <button><ion-icon name="volume-high-outline"></ion-icon></button>
+            <div class="volume-bar">
+              <ion-item>
+                <ion-range (ionChange)="changeVolume($event)" [max]="1" [value]="playerState.volume" [pin]="false" [min]="0" [step]="0.2" color="tertiary" pin="true"></ion-range>
+              </ion-item>
+            </div>
+          </div>
+        </section>
+      </section>
+      <!-- -->
+      <section id="playback">
+        <section class="range">
+          <!-- audo player-->
+          <audio #audioPlayer style="display: none;">
+            <source src="assets/kb.mp3">
+          </audio>
+          <ion-item>
+            <ion-range (ionFocus)="playerFocused()" (ionChange)="changeTime($event)"
+                    [max]="100" [value]="playerState.percentPlayed" [pin]="false" [min]="0" color="tertiary" pin="true"></ion-range>
+          </ion-item>
+        </section>
+      </section>
+    </section>
+  </section>
+</section>
